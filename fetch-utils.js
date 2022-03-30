@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable no-console */
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
 
@@ -34,9 +35,11 @@ export async function createBunny(bunny) {
     const response = await client
         .from('fuzzy_bunnies')
         .delete()
-        .insert([
-            { bunny }
-        ]);
+        .insert([{ 
+			name: bunny.name,
+			user_id: client.auth.user().id,
+			family_id: bunny.family_id 
+		}]);
 
     return checkError(response);
 }
