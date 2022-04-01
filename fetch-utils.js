@@ -24,11 +24,12 @@ export async function deleteBunny(id) {
     const response = await client
         .from('fuzzy_bunnies')
         .delete()
-        .match({ user_id: client.auth.user().id })
-        .single(id);
+        .match({ id })
+        .single();
 
     return checkError(response);
 }
+
 
 export async function createBunny(bunny) {
     // create a bunny using the bunny argument
